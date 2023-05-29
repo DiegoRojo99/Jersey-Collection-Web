@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Apply a reset to remove default browser styles */
+body,
+nav,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Apply styles to the header and nav elements */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Style the h1 element */
+h1 {
+  font-size: 24px;
+}
+
+/* Style the ul element */
+ul {
+  display: flex;
+}
+
+/* Style the li elements */
+li {
+  margin-right: 10px;
+}
+
+li:last-child {
+  margin-right: 0;
+}
+
+li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+.sidebar{
+  background-color: #f1f1f1;
+}

@@ -1,0 +1,33 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Testing
+coverage/
+
+# Environment variables
+.env
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-*
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.zip
+*.gz
