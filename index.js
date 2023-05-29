@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const mysql = require('mysql');
+const cors = require('cors');
+
+app.use(cors());
 
 
 // Create a connection pool

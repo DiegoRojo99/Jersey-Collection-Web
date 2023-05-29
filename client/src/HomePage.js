@@ -1,3 +1,5 @@
+import {LeagueOptions, TeamOptions} from "./Options";
+
 function HomePage() {
   return (
     <div className="col-9">
@@ -5,13 +7,12 @@ function HomePage() {
         <h3>INTRO SEARCH</h3>
       </div>
       <div>
-        <h3>Ligas</h3>
+        <h2>Leagues</h2>
+        <LeagueOptions />
       </div>
       <div>
-        <h3>MArcas</h3>
-      </div>
-      <div>
-        <h3>TEASM</h3>
+        <h3>Teams</h3>
+        <TeamOptions />
       </div>
       <div>
         <h3>LAST</h3>
