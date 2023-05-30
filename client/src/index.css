@@ -66,3 +66,16 @@ li a:hover {
 .sidebar{
   background-color: #f1f1f1;
 }
+.club-info{
+  text-align: center;
+}
+.club-logo{
+  width: 256px;
+  margin: 0 auto;
+}
+a{
+  text-decoration: none;
+}
+nav a{
+  color: white;
+}

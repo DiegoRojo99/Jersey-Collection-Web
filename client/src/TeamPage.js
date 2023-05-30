@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./App.css";
 
 function TeamPage() {
@@ -14,10 +14,9 @@ function TeamPage() {
     try {
       const response = await fetch(`http://localhost:2222/teams/${teamId}`); // Replace '/api/teams/${teamId}' with your actual API endpoint for fetching a specific team
       const data = await response.json();
-      console.log(data);
       setTeam(data);
     } catch (error) {
-      console.error('Error fetching team:', error);
+      console.error("Error fetching team:", error);
     }
   }
 
@@ -25,18 +24,57 @@ function TeamPage() {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="col-9">
-      <div className="jerseys row">
-        {team.map((jersey) => (
-          <div className='col' key={jersey.JerseyId}>
-            <img className='jersey-img' src={jersey.JerseyImage} alt={jersey.Edition+jersey.Season}></img>
-            <h4>{jersey.Edition} {jersey.Season}</h4>
+  if (team !== []) {
+    return (
+      <div className="col-9">
+        <div className="club-info">
+          <div className="row">
+            <img
+              className="club-logo"
+              src={team[0].Logo}
+              alt={team[0].name}
+            ></img>
           </div>
-        ))}
-    </div>
-    </div>
-  );
+          <div className="row">
+            <h4>{team[0].name}</h4>
+          </div>
+        </div>
+        <div className="jerseys row">
+          {team.map((jersey) => (
+            <div className="col" key={jersey.JerseyId}>
+              <img
+                className="jersey-img"
+                src={jersey.JerseyImage}
+                alt={jersey.Edition + jersey.Season}
+              ></img>
+              <h4>
+                {jersey.Edition} {jersey.Season}
+              </h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="col-9">
+        <div className="jerseys row">
+          {team.map((jersey) => (
+            <div className="col" key={jersey.JerseyId}>
+              <img
+                className="jersey-img"
+                src={jersey.JerseyImage}
+                alt={jersey.Edition + jersey.Season}
+              ></img>
+              <h4>
+                {jersey.Edition} {jersey.Season}
+              </h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default TeamPage;
