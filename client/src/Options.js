@@ -23,11 +23,9 @@ function LeagueOptions() {
     <div className="row" id="league-options">
       {leagues.map((league) => (
         <div key={league.LeagueId} className="col option-div">
-          <img
-            className="option-img"
-            src={league.Logo}
-            alt={league.LeagueName + " Logo"}
-          />
+          <a href={"/leagues/" + league.LeagueId}>
+            <img className="option-img" src={league.Logo} alt="Logo" />
+          </a>
           <p>{league.LeagueName}</p>
         </div>
       ))}
@@ -57,11 +55,7 @@ function TeamOptions() {
       {teams.map((team) => (
         <div key={team.teamId} className="col option-div">
           <a href={"/teams/" + team.teamId}>
-            <img
-              className="option-img"
-              src={team.Logo}
-              alt={team.name + " Logo"}
-            />
+            <img className="option-img" src={team.Logo} alt="Logo" />
           </a>
           <p>{team.name}</p>
         </div>

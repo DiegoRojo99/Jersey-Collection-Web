@@ -45,6 +45,20 @@ app.get('/teams/:teamId', (req, res) => {
 });
 
 
+app.get('/leagues/:leagueId', (req, res) => {
+  const leagueId = req.params.leagueId;
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query('SELECT * FROM jerseys j, teams t, leagues l WHERE j.LeagueId=l.LeagueId and j.teamId=t.teamId and j.LeagueId=?', leagueId, (err, results) => {
+    if (err) {
+      console.error('Error fetching jerseys from the database:', err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 const port = 2222; // Replace with your desired port number
 
 app.get('/jerseys', (req, res) => {

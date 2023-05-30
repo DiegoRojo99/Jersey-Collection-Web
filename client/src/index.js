@@ -6,6 +6,7 @@ import App from "./App";
 import TeamPage from "./TeamPage";
 import reportWebVitals from "./reportWebVitals";
 import HomePage from "./HomePage";
+import LeaguePage from "./LeaguePage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +14,7 @@ root.render(
     <React.StrictMode>
       <App />
         <Routes>
+          <Route path="/leagues/:leagueId" element={<LeaguePage />}/>
           <Route path="/teams/:teamId" element={<TeamPage />}/>
           <Route path="/homePage" element={<HomePage />}/>
         </Routes>
