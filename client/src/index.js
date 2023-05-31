@@ -4,6 +4,7 @@ import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import TeamPage from "./TeamPage";
+import UserPage from "./UserPage";
 import reportWebVitals from "./reportWebVitals";
 import HomePage from "./HomePage";
 import LeaguePage from "./LeaguePage";
@@ -15,6 +16,7 @@ root.render(
       <App />
         <Routes>
           <Route path="/leagues/:leagueId" element={<LeaguePage />}/>
+          <Route path="/collections/:userId" element={<UserPage />}/>
           <Route path="/teams/:teamId" element={<TeamPage />}/>
           <Route path="/homePage" element={<HomePage />}/>
         </Routes>

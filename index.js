@@ -45,6 +45,20 @@ app.get('/teams/:teamId', (req, res) => {
 });
 
 
+app.get('/collection/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query('SELECT * FROM jerseys j, teams t, users u, collection c WHERE c.user_id=u.id and t.teamId=j.teamId and j.jerseyID=c.jersey_id and c.user_id=?', userId, (err, results) => {
+    if (err) {
+      console.error('Error fetching jerseys from the database:', err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 app.get('/leagues/:leagueId', (req, res) => {
   const leagueId = req.params.leagueId;
 

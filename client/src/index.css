@@ -80,3 +80,9 @@ a{
 nav a{
   color: white;
 }
+.user-info{
+  text-align: center;
+  margin: 32px 35%;
+  background-color: #f1f1f1;
+  border-radius: 32px;
+}
