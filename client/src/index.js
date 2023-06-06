@@ -16,8 +16,9 @@ root.render(
       <App />
         <Routes>
           <Route path="/leagues/:leagueId" element={<LeaguePage />}/>
-          <Route path="/collections/:userId" element={<UserPage />}/>
+          <Route path="/users/:userId" element={<UserPage />}/>
           <Route path="/teams/:teamId" element={<TeamPage />}/>
+          <Route path="/teams/name/:teamName" element={<TeamPage />}/>
           <Route path="/homePage" element={<HomePage />}/>
         </Routes>
     </React.StrictMode>

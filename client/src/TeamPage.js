@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./App.css";
+import Jersey from "./Jersey";
 
 function TeamPage() {
   const { teamId } = useParams();
@@ -27,7 +28,6 @@ function TeamPage() {
         </div>);
   }
 
-  console.log(team);
   if (team.length!==0) {
     return (
       <div className="col-9">
@@ -45,16 +45,7 @@ function TeamPage() {
         </div>
         <div className="jerseys row">
           {team.map((jersey) => (
-            <div className="col" key={jersey.JerseyId}>
-              <img
-                className="jersey-img"
-                src={jersey.JerseyImage}
-                alt={jersey.Edition + jersey.Season}
-              ></img>
-              <h4>
-                {jersey.Edition} {jersey.Season}
-              </h4>
-            </div>
+            <Jersey jerseyData={jersey}/>
           ))}
         </div>
       </div>

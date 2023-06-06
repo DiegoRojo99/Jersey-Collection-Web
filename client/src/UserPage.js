@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./App.css";
+import Jersey from "./Jersey";
 
 function UserPage() {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
+  const [wishlist, setWishlist] = useState(null);
 
   useEffect(() => {
     fetchUser();
+    fetchWishlist();
   }, [userId]);
 
   async function fetchUser() {
@@ -17,6 +20,17 @@ function UserPage() {
       ); // Replace '/api/users/${userId}' with your actual API endpoint for fetching a specific user
       const data = await response.json();
       setUser(data);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  }
+  async function fetchWishlist() {
+    try {
+      const response = await fetch(
+        `http://localhost:2222/wishlist/${userId}`
+      ); // Replace '/api/users/${userId}' with your actual API endpoint for fetching a specific user
+      const data = await response.json();
+      setWishlist(data);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
@@ -35,10 +49,21 @@ function UserPage() {
     return (
       <div className="col-9">
         <div className="user-info">
-          <h4>{user[0].username}</h4>
+          <h4>{user[0].username.toUpperCase()}</h4>
         </div>
         <div className="jerseys row">
+          <div className="title-div">
+            <h4 className="title">Collection</h4>
+          </div>
           {user.map((jersey) => (
+            <Jersey jerseyData={jersey}/>
+          ))}
+        </div>
+        <div className="jerseys row">
+          <div className="title-div">
+            <h4 className="title">Wishlist</h4>
+          </div>
+          {wishlist.map((jersey) => (
             <div className="col" key={jersey.JerseyId}>
               <img
                 className="jersey-img"

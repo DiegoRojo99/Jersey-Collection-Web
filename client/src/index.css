@@ -83,6 +83,7 @@ nav a{
 .user-info{
   text-align: center;
   margin: 32px 35%;
+  padding: 8px 0;
   background-color: #f1f1f1;
   border-radius: 32px;
 }
