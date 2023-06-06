@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import TeamPage from "./TeamPage";
 
 function LeagueOptions() {
   const [leagues, setLeagues] = useState([]);

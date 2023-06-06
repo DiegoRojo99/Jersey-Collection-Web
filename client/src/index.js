@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App";
-import TeamPage from "./TeamPage";
-import UserPage from "./UserPage";
+import App from "./Components/App";
+import TeamPage from "./Components/TeamPage";
+import UserPage from "./Components/UserPage";
 import reportWebVitals from "./reportWebVitals";
-import HomePage from "./HomePage";
-import LeaguePage from "./LeaguePage";
+import HomePage from "./Components/HomePage";
+import LeaguePage from "./Components/LeaguePage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

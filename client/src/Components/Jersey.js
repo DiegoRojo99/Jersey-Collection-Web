@@ -53,8 +53,8 @@ function Jersey(jerseyData){
                 {jersey.name} {jersey.Edition} {jersey.Season}
               </h6>
               <div className="row buttons-div">
-                <button className="col" onClick={saveCollection}>C</button>
-                <button className="col" onClick={saveWishlist}>W</button>
+                <button className="col" onClick={saveCollection}><i class="fa-solid fa-trophy"></i></button>
+                <button className="col" onClick={saveWishlist}><i class="fa-solid fa-heart"></i></button>
               </div>
             </div>
     );

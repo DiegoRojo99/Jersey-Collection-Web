@@ -65,8 +65,13 @@ app.get('/collection/:userId', (req, res) => {
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query('SELECT * FROM jerseys j, teams t, users u, collection c WHERE c.user_id=u.id and t.teamId=j.teamId and j.jerseyID=c.jersey_id and c.user_id=?', userId, (err, results) => {
     if (err) {
-      console.error('Error fetching jerseys from the database:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      if(err.errno===1062){
+        console.error('Jersey already in collection :', err);
+        res.status(409).json({ error: 'Jersey already in collection' });
+      }else{
+        console.error('Error fetching jerseys to the database:', err);
+        res.status(500).json({ error: 'Internal server error' });
+      }
     } else {
       res.status(200).json(results);
     }
@@ -82,8 +87,13 @@ app.post('/wishlist/:userId', (req, res) => {
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {
     if (err) {
-      console.error('Error fetching jerseys to the database:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      if(err.errno===1062){
+        console.error('Jersey already in wishlist :', err);
+        res.status(409).json({ error: 'Jersey already in wishlist' });
+      }else{
+        console.error('Error fetching jerseys to the database:', err);
+        res.status(500).json({ error: 'Internal server error' });
+      }
     } else {
       res.status(200).json(results);
     }

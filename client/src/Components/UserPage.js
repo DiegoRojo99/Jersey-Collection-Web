@@ -64,16 +64,7 @@ function UserPage() {
             <h4 className="title">Wishlist</h4>
           </div>
           {wishlist.map((jersey) => (
-            <div className="col" key={jersey.JerseyId}>
-              <img
-                className="jersey-img"
-                src={jersey.JerseyImage}
-                alt={jersey.Edition + jersey.Season}
-              ></img>
-              <h4>
-              {jersey.name} {jersey.Edition} {jersey.Season}
-              </h4>
-            </div>
+            <Jersey jerseyData={jersey}/>
           ))}
         </div>
       </div>
