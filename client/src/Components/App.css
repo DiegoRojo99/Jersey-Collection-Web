@@ -62,3 +62,10 @@
   margin: 0 5%;
   border-radius: 16px;
 }
+.result-centre{
+  text-align: center;
+  margin-top: 24px;
+}
+.result-img{
+ height: 182px;
+}

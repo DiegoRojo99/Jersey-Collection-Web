@@ -1,11 +1,14 @@
 import { LeagueOptions, TeamOptions } from "./Options";
+import SearchBar from "./SearchBar";
 
 function SideBar() {
   return (
     <div className="col-3 sidebar">
       <div className="row">
         <h6>SEARCH BAR</h6>
-        <div className="bar-row"></div>
+        <div className="bar-row">
+          <SearchBar />
+        </div>
       </div>
       <div className="row">
         <h6>LEAGUES</h6>

@@ -8,6 +8,7 @@ import UserPage from "./Components/UserPage";
 import reportWebVitals from "./reportWebVitals";
 import HomePage from "./Components/HomePage";
 import LeaguePage from "./Components/LeaguePage";
+import SearchResults from "./Components/SearchResults";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +19,7 @@ root.render(
           <Route path="/leagues/:leagueId" element={<LeaguePage />}/>
           <Route path="/users/:userId" element={<UserPage />}/>
           <Route path="/teams/:teamId" element={<TeamPage />}/>
-          <Route path="/teams/name/:teamName" element={<TeamPage />}/>
+          <Route path="/teams/name/:teamName" element={<SearchResults />}/>
           <Route path="/homePage" element={<HomePage />}/>
         </Routes>
     </React.StrictMode>

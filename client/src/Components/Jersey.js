@@ -1,12 +1,13 @@
 function Jersey(jerseyData){
     var jersey=jerseyData.jerseyData;
+    const jid = jersey.JerseyId;
 
     function saveCollection(){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-        "jerseyId": jersey.JerseyId
+        "jerseyId": jid
         });
 
         var requestOptions = {
@@ -26,7 +27,7 @@ function Jersey(jerseyData){
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-        "jerseyId": jersey.JerseyId
+        "jerseyId": jid
         });
 
         var requestOptions = {
@@ -43,7 +44,7 @@ function Jersey(jerseyData){
     }
 
     return(
-        <div className="col" key={jersey.JerseyId}>
+        <div className="col" key={jid}>
               <img
                 className="jersey-img"
                 src={jersey.JerseyImage}
@@ -53,8 +54,8 @@ function Jersey(jerseyData){
                 {jersey.name} {jersey.Edition} {jersey.Season}
               </h6>
               <div className="row buttons-div">
-                <button className="col" onClick={saveCollection}><i class="fa-solid fa-trophy"></i></button>
-                <button className="col" onClick={saveWishlist}><i class="fa-solid fa-heart"></i></button>
+                <button className="col" onClick={saveCollection}><i className="fa-solid fa-trophy"></i></button>
+                <button className="col" onClick={saveWishlist}><i className="fa-solid fa-heart"></i></button>
               </div>
             </div>
     );
