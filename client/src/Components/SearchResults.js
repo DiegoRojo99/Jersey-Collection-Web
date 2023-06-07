@@ -3,20 +3,84 @@ import { useParams } from "react-router-dom";
 import "./App.css";
 
 function Teams(results){
-  return(
-    <div className="col-9">
-      <div className="row">
-      {results.results.map((team) => (
-        <div key={team.teamId} className="col result-centre">
-          <a href={"/teams/" + team.teamId}>
-            <img className="result-img" src={team.Logo} alt="Logo" />
-          </a>
-          <p>{team.name}</p>
+  if (results.results.length%4===0) {
+    return(
+      <div className="col-9">
+        <div className="row">
+        {results.results.map((team) => (
+          <div key={team.teamId} className="col-3 result-centre">
+            <a href={"/teams/" + team.teamId}>
+              <img className="result-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
         </div>
-      ))}
       </div>
-    </div>
-  )
+    )
+  } else if(results.results.length%6===0) {
+    return(
+      <div className="col-9">
+        <div className="row">
+        {results.results.map((team) => (
+          <div key={team.teamId} className="col-2 result-centre">
+            <a href={"/teams/" + team.teamId}>
+              <img className="result-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
+        </div>
+      </div>
+    )
+  }else if(results.results.length%5===0){
+    return(
+      <div className="col-9">
+        <div className="row">
+        {results.results.map((team) => (
+          <div key={team.teamId} className="col only-five result-centre">
+            <a href={"/teams/" + team.teamId}>
+              <img className="result-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
+        </div>
+      </div>
+    )
+  }else if(results.results.length%3===0){
+    return(
+      <div className="col-9">
+        <div className="row">
+        {results.results.map((team) => (
+          <div key={team.teamId} className="col-4 result-centre">
+            <a href={"/teams/" + team.teamId}>
+              <img className="result-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
+        </div>
+      </div>
+    )
+  }else{
+    return(
+      <div className="col-9">
+        <div className="row">
+        {results.results.map((team) => (
+          <div key={team.teamId} className="col result-centre">
+            <a href={"/teams/" + team.teamId}>
+              <img className="result-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
+        </div>
+      </div>
+    )
+  }
+
+  
 }
 
 function SearchResults() {
