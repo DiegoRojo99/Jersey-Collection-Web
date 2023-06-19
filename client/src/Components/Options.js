@@ -49,18 +49,33 @@ function TeamOptions() {
     }
   }
 
-  return (
-    <div className="row" id="league-options">
-      {teams.map((team) => (
-        <div key={team.teamId} className="col option-div">
-          <a href={"/teams/" + team.teamId}>
-            <img className="option-img" src={team.Logo} alt="Logo" />
-          </a>
-          <p>{team.name}</p>
+  if (teams.length % 5 === 0) {
+    return (
+        <div className="row" id="league-options">
+        {teams.map((team) => (
+            <div key={team.teamId} className="col only-five option-div result-centre">
+              <a href={"/teams/" + team.teamId}>
+              <img className="option-img" src={team.Logo} alt="Logo" />
+              </a>
+              <p>{team.name}</p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="row" id="league-options">
+        {teams.map((team) => (
+          <div key={team.teamId} className="col option-div">
+            <a href={"/teams/" + team.teamId}>
+              <img className="option-img" src={team.Logo} alt="Logo" />
+            </a>
+            <p>{team.name}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 export { LeagueOptions, TeamOptions };
