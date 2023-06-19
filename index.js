@@ -42,6 +42,37 @@ app.get("/teams/name/:teamName", (req, res) => {
   });
 });
 
+
+app.get("/countries", (req, res) => {
+  pool.query("SELECT * FROM country", (err, results) => {
+    if (err) {
+      console.error("Error fetching jerseys from the database:", err);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.get("/countries/:countryCode", (req, res) => {
+  const countryCode = req.params.countryCode;
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query(
+    "SELECT * FROM country c, team t WHERE c.CountryCode=t.TeamCountryCode and c.CountryCode=?",
+    countryCode,
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching teams from the database:", err);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+
 app.get("/teams/:teamId", (req, res) => {
   const teamId = req.params.teamId;
 
@@ -194,7 +225,6 @@ app.post('/teams', (req, res) => {
   const teamName = req.body.TeamName;
   const countryCode = req.body.TeamCountryCode;
   let insertQuery = 'INSERT INTO team (TeamName,TeamCountryCode) VALUES("'+teamName+'","'+countryCode+'")';
-  console.log(insertQuery);
 
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {
