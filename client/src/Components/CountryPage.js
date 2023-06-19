@@ -53,7 +53,7 @@ function CountryPage() {
         <div className="jerseys row">
           {country.map((team) => (
             <div className="team-small col-2">
-              <img src="{team.teamBadge}.png"/>
+              <img src={team.teamBadge}/>
               <p>{team.TeamName}</p>
             </div>
           ))}

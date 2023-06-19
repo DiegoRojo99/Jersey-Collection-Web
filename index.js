@@ -42,7 +42,6 @@ app.get("/teams/name/:teamName", (req, res) => {
   });
 });
 
-
 app.get("/countries", (req, res) => {
   pool.query("SELECT * FROM country", (err, results) => {
     if (err) {
@@ -79,6 +78,25 @@ app.get("/teams/:teamId", (req, res) => {
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(
     "SELECT * FROM jersey j, team t WHERE j.teamId=t.teamId and j.teamId=?",
+    teamId,
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching jerseys from the database:", err);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+app.put("/teams/:teamId", (req, res) => {
+  const teamId = req.params.teamId;
+  const teamLogo = req.body.teamLogo;
+  let q = 'update team set TeamBadge="'+teamLogo+'" where TeamId=?';
+  
+  pool.query(
+    q,
     teamId,
     (err, results) => {
       if (err) {
