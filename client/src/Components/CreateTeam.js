@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { CountriesSelectList } from "./SelectList";
+import { CountriesSelectList, TeamsSelectList, LeaguesSelectList } from "./SelectList";
 
 function CreateTeam() {
   const [teamName, setTeamName] = useState("");
   const [leagueName, setLeagueName] = useState("");
+  const [edition, setEdition] = useState("");
+  const [season, setSeason] = useState("");
+  const [primaryColor, setPrimaryColor] = useState("");
+  const [secondaryColor, setSecondaryColor] = useState("");
+  const [jerseyImage, setJerseyImage] = useState("");
   const [sport, setSport] = useState("");
   const [countryCode, setCountryCode] = useState("");
 
@@ -56,6 +61,40 @@ function CreateTeam() {
       console.log(error);
     }
   };
+  
+  const handleJerseyFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      var teamId = document.getElementById("jersey-team-id").value;
+      var leagueId = document.getElementById("jersey-league-id").value;
+      const response = await fetch("http://localhost:2222/jerseys", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Season: season,
+          Edition: edition,
+          TeamId: teamId,
+          LeagueId: leagueId,
+          PrimaryColor: primaryColor,
+          SecondaryColor: secondaryColor,
+          JerseyImage: jerseyImage,
+        }),
+      });
+      if (response.ok) {
+        setEdition("");
+        setSecondaryColor("");
+        setPrimaryColor("");
+        setEdition("");
+        setSeason("");
+        setJerseyImage("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="col-9">
@@ -71,6 +110,7 @@ function CreateTeam() {
         <button type="submit">Add Team</button>
       </form>
 
+      <h3>New League Here</h3>
       <form onSubmit={handleLeagueFormSubmit}>
         <input
           type="text"
@@ -86,6 +126,43 @@ function CreateTeam() {
           placeholder="Sport"
         />
         <button type="submit">Add League</button>
+      </form>
+
+      <h3>New Jersey Here</h3>
+      <form onSubmit={handleJerseyFormSubmit}>
+        <input
+          type="text"
+          value={edition}
+          onChange={(event) => setEdition(event.target.value)}
+          placeholder="Edition"
+        />
+        <TeamsSelectList id="jersey-team-id" />
+        <LeaguesSelectList id="jersey-league-id" />
+        <input
+          type="number"
+          value={season}
+          onChange={(event) => setSeason(event.target.value)}
+          placeholder="Season"
+        />
+        <input
+          type="text"
+          value={primaryColor}
+          onChange={(event) => setPrimaryColor(event.target.value)}
+          placeholder="Primary Color"
+        />
+        <input
+          type="text"
+          value={secondaryColor}
+          onChange={(event) => setSecondaryColor(event.target.value)}
+          placeholder="Secondary Color"
+        />
+        <input
+          type="text"
+          value={jerseyImage}
+          onChange={(event) => setJerseyImage(event.target.value)}
+          placeholder="Image URL"
+        />
+        <button type="submit">Add Jersey</button>
       </form>
     </div>
   );

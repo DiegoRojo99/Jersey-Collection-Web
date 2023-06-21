@@ -8,11 +8,11 @@ function Teams(results){
       <div className="col-9">
         <div className="row">
         {results.results.map((team) => (
-          <div key={team.teamId} className="col-3 result-centre">
-            <a href={"/teams/" + team.teamId}>
-              <img className="result-img" src={team.Logo} alt="Logo" />
+          <div key={team.TeamId} className="col-3 result-centre">
+            <a href={"/teams/" + team.TeamId}>
+              <img className="result-img" src={team.TeamBadge} alt="Logo" />
             </a>
-            <p>{team.name}</p>
+            <p>{team.TeamName}</p>
           </div>
         ))}
         </div>
@@ -23,11 +23,11 @@ function Teams(results){
       <div className="col-9">
         <div className="row">
         {results.results.map((team) => (
-          <div key={team.teamId} className="col-2 result-centre">
-            <a href={"/teams/" + team.teamId}>
-              <img className="result-img" src={team.Logo} alt="Logo" />
+          <div key={team.TeamId} className="col-2 result-centre">
+            <a href={"/teams/" + team.TeamId}>
+              <img className="result-img" src={team.TeamBadge} alt="Logo" />
             </a>
-            <p>{team.name}</p>
+            <p>{team.TeamName}</p>
           </div>
         ))}
         </div>
@@ -38,11 +38,11 @@ function Teams(results){
       <div className="col-9">
         <div className="row">
         {results.results.map((team) => (
-          <div key={team.teamId} className="col only-five result-centre">
-            <a href={"/teams/" + team.teamId}>
-              <img className="result-img" src={team.Logo} alt="Logo" />
+          <div key={team.TeamId} className="col only-five result-centre">
+            <a href={"/teams/" + team.TeamId}>
+              <img className="result-img" src={team.TeamBadge} alt="Logo" />
             </a>
-            <p>{team.name}</p>
+            <p>{team.TeamName}</p>
           </div>
         ))}
         </div>
@@ -53,11 +53,11 @@ function Teams(results){
       <div className="col-9">
         <div className="row">
         {results.results.map((team) => (
-          <div key={team.teamId} className="col-4 result-centre">
-            <a href={"/teams/" + team.teamId}>
-              <img className="result-img" src={team.Logo} alt="Logo" />
+          <div key={team.TeamId} className="col-4 result-centre">
+            <a href={"/teams/" + team.TeamId}>
+              <img className="result-img" src={team.TeamBadge} alt="Logo" />
             </a>
-            <p>{team.name}</p>
+            <p>{team.TeamName}</p>
           </div>
         ))}
         </div>
@@ -68,11 +68,11 @@ function Teams(results){
       <div className="col-9">
         <div className="row">
         {results.results.map((team) => (
-          <div key={team.teamId} className="col result-centre">
-            <a href={"/teams/" + team.teamId}>
-              <img className="result-img" src={team.Logo} alt="Logo" />
+          <div key={team.TeamId} className="col result-centre">
+            <a href={"/teams/" + team.TeamId}>
+              <img className="result-img" src={team.TeamBadge} alt="Logo" />
             </a>
-            <p>{team.name}</p>
+            <p>{team.TeamName}</p>
           </div>
         ))}
         </div>
@@ -94,7 +94,7 @@ function SearchResults() {
 
   async function fetchResults() {
     try {
-      const response = await fetch(`http://localhost:2222/teams/name/${teamName}`); // Replace '/api/teams/${teamId}' with your actual API endpoint for fetching a specific team
+      const response = await fetch(`http://localhost:2222/teams/name/${teamName}`); // Replace '/api/teams/${TeamId}' with your actual API endpoint for fetching a specific team
       const data = await response.json();
       setResults(data);
     } catch (error) {

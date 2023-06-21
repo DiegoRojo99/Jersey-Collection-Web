@@ -21,11 +21,10 @@ function LeagueOptions() {
   return (
     <div className="row" id="league-options">
       {leagues.map((league) => (
-        <div key={league.LeagueId} className="col option-div">
+        <div key={league.LeagueId} className="col-4 option-div">
           <a href={"/leagues/" + league.LeagueId}>
-            <img className="option-img" src={league.Logo} alt="Logo" />
+            <img className="option-img" src={league.LeagueLogo} alt={league.LeagueName +"Logo"} />
           </a>
-          <p>{league.LeagueName}</p>
         </div>
       ))}
     </div>
@@ -49,33 +48,22 @@ function TeamOptions() {
     }
   }
 
-  if (teams.length % 5 === 0) {
-    return (
-        <div className="row" id="league-options">
-        {teams.map((team) => (
-            <div key={team.teamId} className="col only-five option-div result-centre">
-              <a href={"/teams/" + team.teamId}>
-              <img className="option-img" src={team.Logo} alt="Logo" />
-              </a>
-              <p>{team.name}</p>
-            </div>
-          ))}
+  return (
+    <div className="row" id="league-options">
+      {teams.map((team) => (
+        <div key={team.TeamId} className="col-3 option-div">
+          <a href={"/teams/" + team.TeamId}>
+            <img
+              className="option-img"
+              src={team.TeamBadge}
+              alt={team.TeamName}
+            />
+          </a>
+          <p>{team.name}</p>
         </div>
-    );
-  } else {
-    return (
-      <div className="row" id="league-options">
-        {teams.map((team) => (
-          <div key={team.teamId} className="col option-div">
-            <a href={"/teams/" + team.teamId}>
-              <img className="option-img" src={team.Logo} alt="Logo" />
-            </a>
-            <p>{team.name}</p>
-          </div>
-        ))}
-      </div>
-    );
-  }
+      ))}
+    </div>
+  );
 }
 
 export { LeagueOptions, TeamOptions };

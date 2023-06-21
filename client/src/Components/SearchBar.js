@@ -13,7 +13,7 @@ function SearchBar() {
   }
 
   function makeSearch(){
-    window.location = "localhost:3000/name/teams/"+searchTerm;
+    window.location = "http://localhost:3000/teams/name/"+searchTerm;
   }
 
   return (

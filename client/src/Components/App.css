@@ -40,6 +40,9 @@
 .option-img{
   height: 64px;
 }
+.option-div{
+  margin-bottom: 1rem;
+}
 .jersey-img{
   width: 256px;
 }
@@ -71,4 +74,9 @@
 }
 .only-five{
   min-width: 20%;
+}
+.home-title{
+  text-align: center;
+  font-size: 64px;
+  margin-top: 16px;
 }

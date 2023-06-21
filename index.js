@@ -30,7 +30,7 @@ pool.getConnection((err, connection) => {
 app.get("/", (req, res) => {});
 app.get("/teams/name/:teamName", (req, res) => {
   const teamName = req.params.teamName;
-  let q = "SELECT * FROM team t WHERE t.name like '%" + teamName + "%'";
+  let q = "SELECT * FROM team t WHERE t.TeamName like '%" + teamName + "%'";
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(q, (err, results) => {
     if (err) {
@@ -222,6 +222,28 @@ app.get("/jerseys", (req, res) => {
     if (err) {
       console.error("Error fetching jerseys from the database:", err);
       res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.post('/jerseys', (req, res) => {
+  const edition = req.body.Edition;
+  const season = req.body.Season;
+  const teamId = req.body.TeamId;
+  const leagueId = req.body.LeagueId;
+  const primaryColor = req.body.PrimaryColor;
+  const secondaryColor = req.body.SecondaryColor;
+  const jerseyImage = req.body.JerseyImage;
+  let valuesQuery = '('+season+',"'+edition+'","'+teamId+'","'+leagueId+'","'+primaryColor+'","'+secondaryColor+'","'+jerseyImage+'")';
+  let insertQuery = 'INSERT INTO jersey (Season,Edition, TeamId,LeagueId,PrimaryColor,SecondaryColor,JerseyImage) VALUES'+valuesQuery;
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query(insertQuery, (err, results) => {
+    if (err) {
+      console.error('Error fetching jerseys to the database:', err);
+      res.status(500).json({ error: 'Internal server error' });
     } else {
       res.status(200).json(results);
     }
