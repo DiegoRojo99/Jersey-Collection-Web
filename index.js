@@ -264,7 +264,8 @@ app.get("/teams", (req, res) => {
 app.post('/teams', (req, res) => {
   const teamName = req.body.TeamName;
   const countryCode = req.body.TeamCountryCode;
-  let insertQuery = 'INSERT INTO team (TeamName,TeamCountryCode) VALUES("'+teamName+'","'+countryCode+'")';
+  const teamBadge = req.body.TeamBadge;
+  let insertQuery = 'INSERT INTO team (TeamName,TeamCountryCode,TeamBadge) VALUES("'+teamName+'","'+countryCode+'","'+teamBadge+'")';
 
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {
@@ -303,7 +304,8 @@ app.post('/leagues', (req, res) => {
   const leagueName = req.body.LeagueName;
   const countryCode = req.body.LeagueCountryCode;
   const sport = req.body.LeagueSport;
-  let insertQuery = 'INSERT INTO league (LeagueName,LeagueCountryCode, LeagueSport) VALUES("'+leagueName+'","'+countryCode+'","'+sport+'")';
+  const leagueLogo = req.body.LeagueLogo;
+  let insertQuery = 'INSERT INTO league (LeagueName,LeagueCountryCode, LeagueSport,LeagueLogo) VALUES("'+leagueName+'","'+countryCode+'","'+sport+'","'+leagueLogo+'")';
 
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {

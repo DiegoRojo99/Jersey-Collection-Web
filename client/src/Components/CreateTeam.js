@@ -4,6 +4,8 @@ import { CountriesSelectList, TeamsSelectList, LeaguesSelectList } from "./Selec
 function CreateTeam() {
   const [teamName, setTeamName] = useState("");
   const [leagueName, setLeagueName] = useState("");
+  const [teamBadge, setTeamBadge] = useState("");
+  const [leagueLogo, setLeagueLogo] = useState("");
   const [edition, setEdition] = useState("");
   const [season, setSeason] = useState("");
   const [primaryColor, setPrimaryColor] = useState("");
@@ -25,10 +27,12 @@ function CreateTeam() {
         body: JSON.stringify({
           TeamName: teamName,
           TeamCountryCode: teamCC,
+          TeamBadge: teamBadge,
         }),
       });
       if (response.ok) {
         setCountryCode("");
+        setTeamBadge("");
         setTeamName("");
       }
     } catch (error) {
@@ -50,10 +54,12 @@ function CreateTeam() {
           LeagueName: leagueName,
           LeagueCountryCode: leagueCC,
           LeagueSport: sport,
+          LeagueLogo: leagueLogo,
         }),
       });
       if (response.ok) {
         setCountryCode("");
+        setLeagueLogo("");
         setLeagueName("");
         setSport("");
       }
@@ -107,6 +113,12 @@ function CreateTeam() {
           placeholder="Team Name"
         />
         <CountriesSelectList id="team-country-code" />
+        <input
+          type="text"
+          value={teamBadge}
+          onChange={(event) => setTeamBadge(event.target.value)}
+          placeholder="Team Badge Image URL"
+        />
         <button type="submit">Add Team</button>
       </form>
 
@@ -124,6 +136,12 @@ function CreateTeam() {
           value={sport}
           onChange={(event) => setSport(event.target.value)}
           placeholder="Sport"
+        />
+        <input
+          type="text"
+          value={leagueLogo}
+          onChange={(event) => setLeagueLogo(event.target.value)}
+          placeholder="Logo Image URL"
         />
         <button type="submit">Add League</button>
       </form>
