@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CountriesSelectList, TeamsSelectList, LeaguesSelectList } from "./SelectList";
+import { CountriesSelectList, TeamsSelectList, LeaguesSelectList, BrandsSelectList } from "./SelectList";
 
 function CreateTeam() {
   const [teamName, setTeamName] = useState("");
@@ -12,6 +12,8 @@ function CreateTeam() {
   const [secondaryColor, setSecondaryColor] = useState("");
   const [jerseyImage, setJerseyImage] = useState("");
   const [sport, setSport] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [brandLogo, setBrandLogo] = useState("");
   const [countryCode, setCountryCode] = useState("");
 
   const handleFormSubmit = async (event) => {
@@ -74,6 +76,7 @@ function CreateTeam() {
     try {
       var teamId = document.getElementById("jersey-team-id").value;
       var leagueId = document.getElementById("jersey-league-id").value;
+      var brandId = document.getElementById("jersey-brand-id").value;
       const response = await fetch("http://localhost:2222/jerseys", {
         method: "POST",
         headers: {
@@ -87,6 +90,7 @@ function CreateTeam() {
           PrimaryColor: primaryColor,
           SecondaryColor: secondaryColor,
           JerseyImage: jerseyImage,
+          JerseyBrandId: brandId,
         }),
       });
       if (response.ok) {
@@ -96,6 +100,31 @@ function CreateTeam() {
         setEdition("");
         setSeason("");
         setJerseyImage("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleBrandFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const brandCC = document.getElementById("brand-country-code").value;
+      const response = await fetch("http://localhost:2222/brands", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          BrandName: brandName,
+          BrandCountryCode: brandCC,
+          BrandLogo: brandLogo,
+        }),
+      });
+      if (response.ok) {
+        setBrandLogo("");
+        setBrandName("");
       }
     } catch (error) {
       console.log(error);
@@ -156,6 +185,7 @@ function CreateTeam() {
         />
         <TeamsSelectList id="jersey-team-id" />
         <LeaguesSelectList id="jersey-league-id" />
+        <BrandsSelectList id="jersey-brand-id" />
         <input
           type="number"
           value={season}
@@ -182,6 +212,25 @@ function CreateTeam() {
         />
         <button type="submit">Add Jersey</button>
       </form>
+      
+      <h3>New Brand Here</h3>
+      <form onSubmit={handleBrandFormSubmit}>
+        <input
+          type="text"
+          value={brandName}
+          onChange={(event) => setBrandName(event.target.value)}
+          placeholder="Brand Name"
+        />
+        <CountriesSelectList id="brand-country-code" />
+        <input
+          type="text"
+          value={brandLogo}
+          onChange={(event) => setBrandLogo(event.target.value)}
+          placeholder="Brand Logo Image URL"
+        />
+        <button type="submit">Add Brand</button>
+      </form>
+      
     </div>
   );
 }

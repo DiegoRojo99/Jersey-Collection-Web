@@ -11,6 +11,7 @@ import LeaguePage from "./Components/LeaguePage";
 import SearchResults from "./Components/SearchResults";
 import CreateTeam from "./Components/CreateTeam";
 import CountryPage from "./Components/CountryPage";
+import BrandPage from "./Components/BrandPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Routes>
           <Route path="/countries/:countryCode" element={<CountryPage />}/>
           <Route path="/leagues/:leagueId" element={<LeaguePage />}/>
+          <Route path="/brands/:brandId" element={<BrandPage />}/>
           <Route path="/users/:userId" element={<UserPage />}/>
           <Route path="/teams/:teamId" element={<TeamPage />}/>
           <Route path="/teams/name/:teamName" element={<SearchResults />}/>

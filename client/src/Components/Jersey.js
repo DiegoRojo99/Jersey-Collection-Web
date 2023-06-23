@@ -44,11 +44,10 @@ function Jersey(jerseyData){
     }
 
     return(
-        <div className="col" key={jid}>
+        <div className="col" key={jid+"as"}>
               <img
                 className="jersey-img"
                 src={jersey.JerseyImage}
-                alt={jersey.Edition + jersey.Season}
               ></img>
               <h6>
                 {jersey.name} {jersey.Edition} {jersey.Season}

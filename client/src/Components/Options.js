@@ -20,10 +20,10 @@ function LeagueOptions() {
 
   return (
     <div className="row" id="league-options">
-      {leagues.map((league) => (
-        <div key={league.LeagueId} className="col-4 option-div">
-          <a href={"/leagues/" + league.LeagueId}>
-            <img className="option-img" src={league.LeagueLogo} alt={league.LeagueName +"Logo"} />
+      {leagues.map((l) => (
+        <div key={l.LeagueId} className="col-4 option-div">
+          <a href={"/leagues/" + l.LeagueId}>
+            <img className="option-img" src={l.LeagueLogo} alt={l.LeagueName + "Logo"} />
           </a>
         </div>
       ))}
@@ -50,20 +50,45 @@ function TeamOptions() {
 
   return (
     <div className="row" id="league-options">
-      {teams.map((team) => (
-        <div key={team.TeamId} className="col-3 option-div">
-          <a href={"/teams/" + team.TeamId}>
-            <img
-              className="option-img"
-              src={team.TeamBadge}
-              alt={team.TeamName}
-            />
+      {teams.map((t) => (
+        <div key={t.TeamId} className="col-3 option-div">
+          <a href={"/teams/" + t.TeamId}>
+            <img className="option-img" src={t.TeamBadge} alt={t.TeamName} />
           </a>
-          <p>{team.name}</p>
         </div>
       ))}
     </div>
   );
 }
 
-export { LeagueOptions, TeamOptions };
+function BrandOptions() {
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    getBrandOptions();
+  }, []);
+
+  async function getBrandOptions() {
+    try {
+      const response = await fetch("http://localhost:2222/brands"); // Replace '/api/leagues' with your actual API endpoint
+      const data = await response.json();
+      setBrands(data);
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+    }
+  }
+
+  return (
+    <div className="row" id="league-options">
+      {brands.map((b) => (
+        <div key={b.BrandId} className="col-4 option-div">
+          <a href={"/brands/" + b.BrandId}>
+            <img className="option-img" src={b.BrandLogo} alt={b.BrandName} />
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export { LeagueOptions, TeamOptions, BrandOptions };

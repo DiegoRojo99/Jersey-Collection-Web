@@ -1,4 +1,4 @@
-import { LeagueOptions, TeamOptions } from "./Options";
+import { LeagueOptions, TeamOptions, BrandOptions } from "./Options";
 import SearchBar from "./SearchBar";
 
 function SideBar() {
@@ -17,14 +17,16 @@ function SideBar() {
         </div>
       </div>
       <div className="row">
+        <h6>BRANDS</h6>
+        <div className="bar-row">
+          <BrandOptions />
+        </div>
+      </div>
+      <div className="row">
         <h6>TEAMS</h6>
         <div className="bar-row">
         <TeamOptions />
         </div>
-      </div>
-      <div className="row">
-        <h6>BRANDS</h6>
-        <div className="bar-row"></div>
       </div>
     </div>
   );

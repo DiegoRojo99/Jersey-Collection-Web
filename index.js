@@ -236,8 +236,9 @@ app.post('/jerseys', (req, res) => {
   const primaryColor = req.body.PrimaryColor;
   const secondaryColor = req.body.SecondaryColor;
   const jerseyImage = req.body.JerseyImage;
-  let valuesQuery = '('+season+',"'+edition+'","'+teamId+'","'+leagueId+'","'+primaryColor+'","'+secondaryColor+'","'+jerseyImage+'")';
-  let insertQuery = 'INSERT INTO jersey (Season,Edition, TeamId,LeagueId,PrimaryColor,SecondaryColor,JerseyImage) VALUES'+valuesQuery;
+  const brandId = req.body.JerseyBrandId;
+  let valuesQuery = '('+season+',"'+edition+'","'+teamId+'","'+leagueId+'","'+primaryColor+'","'+secondaryColor+'",'+brandId+',"'+jerseyImage+'")';
+  let insertQuery = 'INSERT INTO jersey (Season,Edition, TeamId,LeagueId,PrimaryColor,SecondaryColor,JerseyBrandId,JerseyImage) VALUES'+valuesQuery;
 
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {
@@ -306,6 +307,58 @@ app.post('/leagues', (req, res) => {
   const sport = req.body.LeagueSport;
   const leagueLogo = req.body.LeagueLogo;
   let insertQuery = 'INSERT INTO league (LeagueName,LeagueCountryCode, LeagueSport,LeagueLogo) VALUES("'+leagueName+'","'+countryCode+'","'+sport+'","'+leagueLogo+'")';
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query(insertQuery, (err, results) => {
+    if (err) {
+      console.error('Error fetching jerseys to the database:', err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+//BRANDS
+app.get("/brands", (req, res) => {
+  pool.query("SELECT * FROM brand", (err, results) => {
+    if (err) {
+      console.error("Error fetching brands from the database:", err);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.get("/brands/:brandId", (req, res) => {
+  const brandId = req.params.brandId;
+
+  // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
+  pool.query(
+    "SELECT * FROM jersey j, brand b WHERE j.JerseyBrandId=b.BrandId and b.BrandId=?",
+    brandId,
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching jerseys from the database:", err);
+        if(err.errno===1406){
+          res.status(500).json({ error: "Data too long" });
+        }else{
+          res.status(500).json({ error: "Internal server error" });
+        }
+      } else {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+
+app.post('/brands', (req, res) => {
+  const brandName = req.body.BrandName;
+  const brandCountryCode = req.body.BrandCountryCode;
+  const brandLogo = req.body.BrandLogo;
+  let insertQuery = 'INSERT INTO brand (BrandName, BrandCountryCode, BrandLogo) VALUES("'+brandName+'","'+brandCountryCode+'","'+brandLogo+'")';
 
   // Here, you can write your logic to retrieve data for the specified team ID from your database or any other data source
   pool.query(insertQuery, (err, results) => {
